@@ -51,8 +51,8 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t ghcr.io/${{ github.repository }}/Docker-nextcloud:${{ needs.bump-ver-push-tag.outputs.tag }} ./Docker-nextcloud
-          docker push ghcr.io/${{ github.repository }}/Docker-nextcloud:${{ needs.bump-ver-push-tag.outputs.tag }}
+          docker build -t ghcr.io/ipaul32/Docker-nextcloud:${{ needs.bump-ver-push-tag.outputs.tag }} ./Docker-nextcloud
+          docker push ghcr.io/ipaul32/Docker-nextcloud:${{ needs.bump-ver-push-tag.outputs.tag }}
 
   generate-chart:
     name: Generate Chart
