@@ -54,7 +54,11 @@ RUN set -ex; \
         zip \
     ; \
     \
-    pecl install APCu-5.1.23 imagick-3.7.0 memcached-3.2.0 redis-6.0.2; \
+    pecl install APCu-5.1.23; \
+    pecl install imagick-3.7.0; \
+    pecl install memcached-3.2.0; \
+    pecl install redis-6.0.2; \
+    \
     docker-php-ext-enable \
         apcu \
         imagick \
@@ -91,9 +95,9 @@ RUN { \
     echo 'apc.enable_cli=1' >> "${PHP_INI_DIR}/conf.d/docker-php-ext-apcu.ini"; \
     \
     { \
-        echo "memory_limit=\${PHP_MEMORY_LIMIT}"; \
-        echo "upload_max_filesize=\${PHP_UPLOAD_LIMIT}"; \
-        echo "post_max_size=\${PHP_UPLOAD_LIMIT}"; \
+        echo 'memory_limit=${PHP_MEMORY_LIMIT}'; \
+        echo 'upload_max_filesize=${PHP_UPLOAD_LIMIT}'; \
+        echo 'post_max_size=${PHP_UPLOAD_LIMIT}'; \
     } > "${PHP_INI_DIR}/conf.d/nextcloud.ini"; \
     \
     mkdir /var/www/data; \
@@ -116,4 +120,27 @@ ENV DB_PASSWORD=nextcloud
 ENV NEXTCLOUD_VERSION 27.1.4
 
 RUN set -ex; \
-   
+    apk add --no-cache --virtual .fetch-deps \
+        bzip2 \
+        gnupg \
+    ; \
+    \
+    curl -fsSL -o nextcloud.tar.bz2 "https://download.nextcloud.com/server/releases/nextcloud-27.1.4.tar.bz2"; \
+    curl -fsSL -o nextcloud.tar.bz2.asc "https://download.nextcloud.com/server/releases/nextcloud-27.1.4.tar.bz2.asc"; \
+    export GNUPGHOME="$(mktemp -d)"; \
+    gpg --batch --keyserver keyserver.ubuntu.com  --recv-keys 28806A878AE423A28372792ED75899B9A724937A; \
+    gpg --batch --verify nextcloud.tar.bz2.asc nextcloud.tar.bz2; \
+    tar -xjf nextcloud.tar.bz2 -C /usr/src/; \
+    gpgconf --kill all; \
+    rm nextcloud.tar.bz2.asc nextcloud.tar.bz2; \
+    rm -rf "$GNUPGHOME" /usr/src/nextcloud/updater; \
+    mkdir -p /usr/src/nextcloud/data; \
+    mkdir -p /usr/src/nextcloud/custom_apps; \
+    chmod +x /usr/src/nextcloud/occ; \
+    apk del --no-network .fetch-deps
+
+COPY *.sh upgrade.exclude /
+COPY config/* /usr/src/nextcloud/config/
+
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["php-fpm"]
