@@ -121,27 +121,26 @@ jobs:
           git diff --quiet && git diff --staged --quiet || git commit -m "Chart version ${{ needs.bump-ver-push-tag.outputs.tag }}" -m "${{ github.event.head_commit.message }}"
           git push
   
-  slack-notification:
-    - name: Slack Notification on Success
-      if: success()
-      uses: rtCamp/action-slack-notify@v2
-      env:
-        SLACK_CHANNEL: github_action
-        SLACK_COLOR: '#006400'
-        SLACK_ICON: 'https://github.com/rtCamp.png?size=48'
-        SLACK_MESSAGE: 'Nextcloud builded'
-        SLACK_TITLE: 'SUCCESS!'
-        SLACK_USERNAME: rtCamp
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      - name: Slack Notification on Success
+        if: success()
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: github_action
+          SLACK_COLOR: '#006400'
+          SLACK_ICON: 'https://github.com/rtCamp.png?size=48'
+          SLACK_MESSAGE: 'Nextcloud built'
+          SLACK_TITLE: 'SUCCESS!'
+          SLACK_USERNAME: rtCamp
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
-    - name: Slack Notification on Failure
-      if: failure()
-      uses: rtCamp/action-slack-notify@v2
-      env:
-        SLACK_CHANNEL: github_action
-        SLACK_COLOR: '#8B0000'
-        SLACK_ICON: 'https://github.com/rtCamp.png?size=48'
-        SLACK_MESSAGE: 'You have errors or mistakes in your jobs'
-        SLACK_TITLE: 'FAILURE!'
-        SLACK_USERNAME: rtCamp
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      - name: Slack Notification on Failure
+        if: failure()
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: github_action
+          SLACK_COLOR: '#8B0000'
+          SLACK_ICON: 'https://github.com/rtCamp.png?size=48'
+          SLACK_MESSAGE: 'You have errors or mistakes in your jobs'
+          SLACK_TITLE: 'FAILURE!'
+          SLACK_USERNAME: rtCamp
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
