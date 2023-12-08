@@ -69,13 +69,11 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config --global user.name "$GITHUB_ACTOR"
-          git config --global user.email "$GITHUB_MAIL"
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
           git add .
           git commit -m "Update Chart to ${{ needs.bump-ver-push-tag.outputs.tag }} by GitHub Actions"
           git push origin master
-        env:
-          GH_TOKEN: ${{ secrets.TOKEN_GIT }}
 
   lint-helm:
     name: Helm Lint
