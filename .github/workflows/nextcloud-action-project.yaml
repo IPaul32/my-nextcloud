@@ -73,7 +73,7 @@ jobs:
           git config --global user.email "$GITHUB_MAIL"
           git add .
           git commit -m "Update Chart to ${{ needs.bump-ver-push-tag.outputs.tag }} by GitHub Actions"
-          git push origin main
+          git push origin master
 
   lint-helm:
     name: Helm Lint
