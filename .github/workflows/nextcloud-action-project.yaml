@@ -72,6 +72,7 @@ jobs:
           echo "GitHub Actor: $GITHUB_ACTOR"
           echo "GitHub Token: $GITHUB_TOKEN"
           echo "GitHub Repository: $GITHUB_REPOSITORY"
+          git config --get-all --show-origin
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_GIT }}
 
