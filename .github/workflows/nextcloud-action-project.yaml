@@ -66,6 +66,14 @@ jobs:
         run: |
           sed -i "s/^version:.*$/version: ${{ needs.bump-ver-push-tag.outputs.tag }}/" ./my-nextcloud/Chart.yaml
           sed -i "s/^appVersion:.*$/appVersion: ${{ needs.bump-ver-push-tag.outputs.tag }}/" ./my-nextcloud/Chart.yaml
+      
+      - name: Debug Info
+        run: |
+          echo "GitHub Actor: $GITHUB_ACTOR"
+          echo "GitHub Token: $GITHUB_TOKEN"
+          echo "GitHub Repository: $GITHUB_REPOSITORY"
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GIT }}
 
       - name: Commit changes
         run: |
