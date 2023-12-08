@@ -31,7 +31,7 @@ jobs:
       - name: Docker Lint
         uses: hadolint/hadolint-action@v3.1.0
         with:
-          dockerfile: ./Docker-nextcloud/Dockerfile
+          dockerfile: ./docker-nextcloud/Dockerfile
           failure-threshold: error
 
   build-and-push-image:
