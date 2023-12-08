@@ -51,8 +51,8 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t ghcr.io/${{ github.repository }}//Docker-nextcloud:${{ needs.bump-ver-push-tag.outputs.tag }} .//Docker-nextcloud
-          docker push ghcr.io/${{ github.repository }}//Docker-nextcloud:${{ needs.bump-ver-push-tag.outputs.tag }}
+          docker build -t ghcr.io/${{ github.repository }}/Docker-nextcloud:${{ needs.bump-ver-push-tag.outputs.tag }} ./Docker-nextcloud
+          docker push ghcr.io/${{ github.repository }}/Docker-nextcloud:${{ needs.bump-ver-push-tag.outputs.tag }}
 
   generate-chart:
     name: Generate Chart
@@ -64,8 +64,8 @@ jobs:
 
       - name: Update appVersion & Chart version
         run: |
-          sed -i "s/^version:.*$/version: ${{ needs.bump-ver-push-tag.outputs.tag }}/" ./charts/Docker-nextcloud/Chart.yaml
-          sed -i "s/^appVersion:.*$/appVersion: ${{ needs.bump-ver-push-tag.outputs.tag }}/" ./charts/Docker-nextcloud/Chart.yaml
+          sed -i "s/^version:.*$/version: ${{ needs.bump-ver-push-tag.outputs.tag }}/" ./my-nextcloud/Chart.yaml
+          sed -i "s/^appVersion:.*$/appVersion: ${{ needs.bump-ver-push-tag.outputs.tag }}/" ./my-nextcloud/Chart.yaml
 
       - name: Commit changes
         run: |
@@ -90,7 +90,7 @@ jobs:
 
       - name: Helm lint
         run: |
-          helm lint ./charts/Docker-nextcloud
+          helm lint ./my-nextcloud
 
   chart-release:
     name: Chart release

@@ -4,7 +4,7 @@ FROM php:8.2-fpm-alpine3.18
 # entrypoint.sh and cron.sh dependencies
 RUN set -ex; \
     \
-    apk add --no-cache \
+    apk add=27.1.4-fpm-alpine --no-cache \
         imagemagick \
         rsync \
     ; \
@@ -14,9 +14,10 @@ RUN set -ex; \
 
 # install the PHP extensions we need
 # see https://docs.nextcloud.com/server/stable/admin_manual/installation/source_installation.html
+SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 RUN set -ex; \
     \
-    apk add --no-cache --virtual .build-deps \
+    apk add 27.1.4-fpm-alpine --no-cache --virtual .build-deps \
         $PHPIZE_DEPS \
         autoconf \
         freetype-dev \
@@ -53,6 +54,7 @@ RUN set -ex; \
         zip \
     ; \
     \
+
 # pecl will claim success even if one install fails, so we need to perform each install separately
     pecl install APCu-5.1.23; \
     pecl install imagick-3.7.0; \
@@ -74,7 +76,8 @@ RUN set -ex; \
             | awk 'system("[ -e /usr/local/lib/" $1 " ]") == 0 { next } { print "so:" $1 }' \
     )"; \
     apk add --no-network --virtual .nextcloud-phpext-rundeps $runDeps; \
-    apk del --no-network .build-deps
+    apk del --no-network .build-deps; \
+    rm -rf /var/cache/apk/*
 
 # set recommended PHP.ini settings
 # see https://docs.nextcloud.com/server/latest/admin_manual/installation/server_tuning.html#enable-php-opcache
@@ -119,7 +122,7 @@ ENV DB_PASSWORD=nextcloud
 ENV NEXTCLOUD_VERSION 27.1.4
 
 RUN set -ex; \
-    apk add --no-cache --virtual .fetch-deps \
+    apk add 27.1.4-fpm-alpine --no-cache --virtual .fetch-deps \
         bzip2 \
         gnupg \
     ; \
