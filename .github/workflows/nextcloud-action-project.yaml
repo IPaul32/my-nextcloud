@@ -59,6 +59,9 @@ jobs:
     needs: bump-ver-push-tag
     runs-on: ubuntu-latest
     steps:
+      - name: Create SSH directory
+        run: mkdir -p ~/.ssh
+      
       - name: Add SSH key to agent
         run: |
           ssh-keyscan github.com >> ~/.ssh/known_hosts
