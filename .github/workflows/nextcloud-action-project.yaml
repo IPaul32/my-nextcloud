@@ -121,7 +121,7 @@ jobs:
 
       - name: Move folder
         run: |
-          sh helm-package.sh
+          helm package my-nextcloud
           mv nextcloud-v/* ./
           cd ./
           helm repo index --url https://ipaul32.github.io/my-nextcloud/ --merge index.yaml .
