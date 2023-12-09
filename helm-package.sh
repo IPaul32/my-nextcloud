@@ -5,4 +5,4 @@ if ! [ -d nextcloud-v ]; then
 fi
 cd nextcloud-v
 
-helm package ../my-nextcloud/charts/
+helm package ./my-nextcloud

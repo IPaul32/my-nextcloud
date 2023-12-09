@@ -119,12 +119,10 @@ jobs:
         with:
           version: v3.5.0
 
-      - name: Sync Repo
-        run: cd ./nextcloud-v && sh helm-package.sh
-
       - name: Move folder
         run: |
-          mv ./nextcloud-v/* ./
+          sh helm-package.sh
+          mv nextcloud-v/* ./
           cd ./
           helm repo index --url https://ipaul32.github.io/my-nextcloud/ --merge index.yaml .
           git config --global user.name "$GITHUB_ACTOR"
