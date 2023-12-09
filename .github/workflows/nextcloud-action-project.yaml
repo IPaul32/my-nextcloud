@@ -72,16 +72,16 @@ jobs:
       
       - name: Debug Info
         run: |
-          echo "GitHub Actor: $GITHUB_ACTOR"
-          echo "GitHub Token: $GITHUB_TOKEN"
-          echo "GitHub Repository: $GITHUB_REPOSITORY"
+          echo "GitHub Actor: "$GITHUB_ACTOR"
+          echo "GitHub Token: "$GITHUB_TOKEN"
+          echo "GitHub Repository: "$GITHUB_REPOSITORY"
           git config --global user.name "${{ github.actor }}"
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_GIT }}
 
       - name: Commit changes
         run: |
-          git config --global user.name IPaul32
+          git config --global user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
           git add .
           git commit -m "Update Chart to ${{ needs.bump-ver-push-tag.outputs.tag }} by GitHub Actions"
