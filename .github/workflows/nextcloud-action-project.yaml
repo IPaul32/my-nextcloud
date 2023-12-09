@@ -59,32 +59,11 @@ jobs:
     needs: bump-ver-push-tag
     runs-on: ubuntu-latest
     steps:
-      - name: Create SSH directory
-        run: mkdir -p ~/.ssh
-      
-      - name: Add SSH key to agent
-        run: |
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          eval "$(ssh-agent -s)"
-          ssh-add <(echo "$SSH_PRIVATE_KEY")
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      
+
       - name: Checkout
         uses: actions/checkout@v4.1.1
         with:
-          repository: git@github.com:IPaul32/my-nextcloud.git
           ref: master
-          ssh-strict: true
-          persist-credentials: false
-          clean: true
-          sparse-checkout-cone-mode: true
-          fetch-depth: 1
-          fetch-tags: false
-          show-progress: true
-          lfs: false
-          submodules: false
-          set-safe-directory: true
 
       - name: Update appVersion & Chart version
         run: |
@@ -102,7 +81,7 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config user.name "$GITHUB_ACTOR"
+          git config --global user.name IPaul32
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
           git add .
           git commit -m "Update Chart to ${{ needs.bump-ver-push-tag.outputs.tag }} by GitHub Actions"
