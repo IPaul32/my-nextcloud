@@ -1,3 +1,14 @@
 apiVersion: v1
-entries: {}
-generated: "2023-12-10T00:36:50.626694914+03:00"
+entries:
+  my-nextcloud:
+  - apiVersion: v2
+    appVersion: v0.0.24
+    created: "2023-12-09T22:00:38.189135448Z"
+    description: A Helm chart for Kubernetes
+    digest: 54c5b84db1d7eb65caee45c3b344cc6ab6102437785d5b58eec66230b2cf06c6
+    name: my-nextcloud
+    type: application
+    urls:
+    - https://ipaul32.github.io/my-nextcloud/my-nextcloud-v0.0.24.tgz
+    version: v0.0.24
+generated: "2023-12-09T22:00:38.188629729Z"
