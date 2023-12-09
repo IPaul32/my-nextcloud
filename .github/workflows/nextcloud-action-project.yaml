@@ -76,7 +76,7 @@ jobs:
           repository: git@github.com:IPaul32/my-nextcloud.git
           ref: master
           ssh-strict: true
-          persist-credentials: true
+          persist-credentials: false
           clean: true
           sparse-checkout-cone-mode: true
           fetch-depth: 1
