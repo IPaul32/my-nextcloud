@@ -1,4 +1,4 @@
-name: Building pishing and charting Nextcloud
+name: Building pushing and charting Nextcloud
 on:
   push:
     branches:
