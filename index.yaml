@@ -2,13 +2,53 @@ apiVersion: v1
 entries:
   my-nextcloud:
   - apiVersion: v2
-    appVersion: v0.0.24
-    created: "2023-12-09T22:00:38.189135448Z"
+    appVersion: v0.0.35
+    created: "2023-12-10T11:44:25.415465387Z"
     description: A Helm chart for Kubernetes
-    digest: 54c5b84db1d7eb65caee45c3b344cc6ab6102437785d5b58eec66230b2cf06c6
+    digest: e6b11b5721b4847b387b28670b2a3f26b1bb415929a210a794d87c7b11083f88
     name: my-nextcloud
     type: application
     urls:
-    - https://ipaul32.github.io/my-nextcloud/my-nextcloud-v0.0.24.tgz
+    - https://ipaul32.github.io/my-nextcloud/nextcloud-v/my-nextcloud-v0.0.35.tgz
+    version: v0.0.35
+  - apiVersion: v2
+    appVersion: v0.0.34
+    created: "2023-12-10T11:44:25.415084979Z"
+    description: A Helm chart for Kubernetes
+    digest: 1a77b00167c45b5cda083b7f3d2e7c94fd08560fc0af9fe8a8a65c9d7e845e43
+    name: my-nextcloud
+    type: application
+    urls:
+    - https://ipaul32.github.io/my-nextcloud/nextcloud-v/my-nextcloud-v0.0.34.tgz
+    version: v0.0.34
+  - apiVersion: v2
+    appVersion: v0.0.33
+    created: "2023-12-10T11:44:25.414678282Z"
+    description: A Helm chart for Kubernetes
+    digest: dd2e93f8843ac5fa61985aeed56d44e0400a1067776dda491d6444399e26173d
+    name: my-nextcloud
+    type: application
+    urls:
+    - https://ipaul32.github.io/my-nextcloud/nextcloud-v/my-nextcloud-v0.0.33.tgz
+    version: v0.0.33
+  - apiVersion: v2
+    appVersion: v0.0.32
+    created: "2023-12-10T11:44:25.414189792Z"
+    description: A Helm chart for Kubernetes
+    digest: be40a9695c9df9fe7fee0213125e0ab48746ac1ef60c75d9556933485a9bdc9a
+    name: my-nextcloud
+    type: application
+    urls:
+    - https://ipaul32.github.io/my-nextcloud/nextcloud-v/my-nextcloud-v0.0.32.tgz
+    version: v0.0.32
+  - apiVersion: v2
+    appVersion: v0.0.24
+    created: "2023-12-10T11:44:25.413179067Z"
+    description: A Helm chart for Kubernetes
+    digest: 952fb165e6542760dd998c645fec2162b928d8b71ee231ff9f5902783ca61101
+    name: my-nextcloud
+    type: application
+    urls:
+    - https://ipaul32.github.io/my-nextcloud/nextcloud-v/my-nextcloud-v0.0.24.tgz
     version: v0.0.24
-generated: "2023-12-09T22:00:38.188629729Z"
+generated: "2023-12-10T11:44:25.412228467Z"
