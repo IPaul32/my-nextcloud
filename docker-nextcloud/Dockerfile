@@ -1,6 +1,8 @@
 # DO NOT EDIT: created by update.sh from Dockerfile-alpine.template
 FROM php:8.2-fpm-alpine3.18
 
+COPY entrypoint.sh /entrypoint.sh  # Добавлена эта строка
+
 # entrypoint.sh and cron.sh dependencies
 RUN set -ex; \
     \
@@ -9,7 +11,7 @@ RUN set -ex; \
         rsync \
     ; \
     \
-    chmod +x /entrypoint.sh; \  
+    chmod +x /entrypoint.sh; \
     \
     rm /var/spool/cron/crontabs/root; \
     echo '*/5 * * * * php -f /var/www/html/cron.php' > /var/spool/cron/crontabs/www-data
