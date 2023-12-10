@@ -1,16 +1,16 @@
 ind: Service
 apiVersion: v1
 metadata:
-  name: {{ template "nextcloud.fullname" . }}
+  name: {{ template "my-nextcloud.fullname" . }}
   namespace: {{ .Release.Namespace | quote }}
   labels:
-    app: {{ template "nextcloud.name" . }}
-    chart: {{ template "nextcloud.chart" . }}
+    app: {{ template "my-nextcloud.name" . }}
+    chart: {{ template "my-nextcloud.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
   selector:
-    app: {{ template "nextcloud.name" . }}
+    app: {{ template "my-nextcloud.name" . }}
     release: {{ .Release.Name }}
   ports:
   - protocol: TCP
@@ -21,16 +21,16 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: {{ template "nextcloud.fullname" . }}-preview
+  name: {{ template "my-nextcloud.fullname" . }}-preview
   namespace: {{ .Release.Namespace | quote }}
   labels:
-    app: {{ template "nextcloud.name" . }}
-    chart: {{ template "nextcloud.chart" . }}
+    app: {{ template "my-nextcloud.name" . }}
+    chart: {{ template "my-nextcloud.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
   selector:
-    app: {{ template "nextcloud.name" . }}
+    app: {{ template "my-nextcloud.name" . }}
     release: {{ .Release.Name }}
   ports:
   - protocol: TCP

@@ -1,11 +1,11 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: {{ template "nextcloud.fullname" . }}
+  name: {{ template "my-nextcloud.fullname" . }}
   namespace: {{ .Release.Namespace | quote }}
   labels:
-    app: {{ template "nextcloud.name" . }}
-    chart: {{ template "nextcloud.chart" . }}
+    app: {{ template "my-nextcloud.name" . }}
+    chart: {{ template "my-nextcloud.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
@@ -13,17 +13,17 @@ spec:
   revisionHistoryLimit: 2
   selector:
     matchLabels:
-      app: {{ template "nextcloud.name" . }}
+      app: {{ template "my-nextcloud.name" . }}
       release: {{ .Release.Name }}
   strategy:
     blueGreen:
-      activeService: {{ template "nextcloud.fullname" . }}
-      previewService: {{ template "nextcloud.fullname" . }}-preview
+      activeService: {{ template "my-nextcloud.fullname" . }}
+      previewService: {{ template "my-nextcloud.fullname" . }}-preview
       autoPromotionEnabled: false     
   template:
     metadata:
       labels:
-        app: {{ template "nextcloud.name" . }}
+        app: {{ template "my-nextcloud.name" . }}
         release: {{ .Release.Name }}
     spec:
       containers:
@@ -44,4 +44,4 @@ spec:
       volumes:
       - name: persistent-storage
         persistentVolumeClaim:
-          claimName: {{ template "nextcloud.name" . }}  
+          claimName: {{ template "my-nextcloud.name" . }}  
