@@ -1,4 +1,5 @@
 name: Building pushing and charting Nextcloud
+
 on:
   push:
     branches:
@@ -59,7 +60,6 @@ jobs:
     needs: bump-ver-push-tag
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout
         uses: actions/checkout@v4.1.1
         with:
@@ -69,7 +69,13 @@ jobs:
         run: |
           sed -i "s/^version:.*$/version: ${{ needs.bump-ver-push-tag.outputs.tag }}/" ./my-nextcloud/Chart.yaml
           sed -i "s/^appVersion:.*$/appVersion: ${{ needs.bump-ver-push-tag.outputs.tag }}/" ./my-nextcloud/Chart.yaml
-      
+
+      - name: Build Helm Chart
+        run: |
+          cd my-nextcloud
+          helm package .
+          mv *.tgz ../nextcloud-v/
+
       - name: Debug Info
         run: |
           echo "GitHub Actor: $GITHUB_ACTOR"
@@ -81,6 +87,7 @@ jobs:
 
       - name: Commit changes
         run: |
+          cd ..
           git config --global user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
           git add .
@@ -121,16 +128,14 @@ jobs:
 
       - name: Move folder
         run: |
-          helm package my-nextcloud
           mv nextcloud-v/* ./
-          cd ./
           helm repo index --url https://ipaul32.github.io/my-nextcloud/ --merge index.yaml .
           git config --global user.name "$GITHUB_ACTOR"
           git config --global user.email "GITHUB_ACTOR@users.noreply.github.com"
           git add .
           git diff --quiet && git diff --staged --quiet || git commit -m "Chart version ${{ needs.bump-ver-push-tag.outputs.tag }}" -m "${{ github.event.head_commit.message }}"
           git push
-  
+
       - name: Slack Notification on Success
         if: success()
         uses: rtCamp/action-slack-notify@v2
