@@ -136,6 +136,7 @@ RUN set -ex; \
 
 COPY *.sh upgrade.exclude /
 COPY config/* /usr/src/nextcloud/config/
+COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["php-fpm"]
