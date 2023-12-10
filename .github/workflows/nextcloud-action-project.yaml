@@ -71,11 +71,7 @@ jobs:
           sed -i "s/^appVersion:.*$/appVersion: ${{ needs.bump-ver-push-tag.outputs.tag }}/" ./my-nextcloud/Chart.yaml
 
       - name: Build Helm Chart
-        run: |
-          cd my-nextcloud
-          helm package .
-          mv *.tgz ../nextcloud-v/
-        shell: bash
+        run: sh helm-package.sh
 
       - name: Debug Info
         run: |
