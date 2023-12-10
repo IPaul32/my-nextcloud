@@ -10,7 +10,7 @@ imagePullSecrets:
 
 image:
   repository: ghcr.io/ipaul32/docker-nextcloud
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   tag: ""
 
 env:
@@ -73,6 +73,9 @@ nfs:
   path: "/mnt/IT-Academy/nfs-data/sa2-25-23/Ivanchuk_Pavel"
   readOnly: false
   vers: 3
+
+persistentVolume:
+    storage: 5Gi
 
 nodeSelector: {}
 
