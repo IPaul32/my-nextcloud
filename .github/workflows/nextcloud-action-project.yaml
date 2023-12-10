@@ -1,5 +1,4 @@
 name: Building pushing and charting Nextcloud
-
 on:
   push:
     branches:
@@ -70,20 +69,22 @@ jobs:
           sed -i "s/^version:.*$/version: ${{ needs.bump-ver-push-tag.outputs.tag }}/" ./my-nextcloud/Chart.yaml
           sed -i "s/^appVersion:.*$/appVersion: ${{ needs.bump-ver-push-tag.outputs.tag }}/" ./my-nextcloud/Chart.yaml
 
-      - name: Build Helm Chart
-        run: sh helm-package.sh
-
       - name: Debug Info
         run: |
           echo "GitHub Actor: $GITHUB_ACTOR"
           echo "GitHub Token: $GITHUB_TOKEN"
           echo "GitHub Repository: $GITHUB_REPOSITORY"
-          git config --global user.name "${{ github.actor }}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_GIT }}
 
-      - name: Commit changes
+      - name: Run custom script
         run: |
+          if [ ! -d ./nextcloud-v ]; then
+            mkdir -p ./nextcloud-v
+          fi
+
+          cd my-nextcloud
+          helm package .
+          mv *.tgz ../nextcloud-v/
+
           cd ..
           git config --global user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
@@ -123,10 +124,18 @@ jobs:
         with:
           version: v3.5.0
 
-      - name: Move folder
+      - name: Run custom script
         run: |
-          mv nextcloud-v/* ./
-          helm repo index --url https://ipaul32.github.io/my-nextcloud/ --merge index.yaml .
+          if [ ! -d ./nextcloud-v ]; then
+            mkdir -p ./nextcloud-v
+          fi
+
+          cd my-nextcloud
+          helm package .
+          mv *.tgz ../nextcloud-v/
+
+          cd ..
+          mv my-nextcloud-*.tgz nextcloud-v/
           git config --global user.name "$GITHUB_ACTOR"
           git config --global user.email "GITHUB_ACTOR@users.noreply.github.com"
           git add .
