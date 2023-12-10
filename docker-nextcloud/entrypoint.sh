@@ -1,4 +1,4 @@
-#!/bin/ash
+#!/bin/sh
 set -eu
 
 # version_greater A B returns whether A > B
@@ -193,15 +193,14 @@ if expr "$1" : "apache" 1>/dev/null || [ "$1" = "php-fpm" ] || [ "${NEXTCLOUD_UP
                         # shellcheck disable=SC2016
                         install_options=$install_options' --data-dir "$NEXTCLOUD_DATA_DIR"'
                     fi
-                    
-                    if [ -n "${DB_HOST+x}" ] && [ -n "${DB_PORT+x}" ]; then
-                        echo "Configuring database connection..."
-                        file_env 'MYSQL_DATABASE' "${DB_DATABASE}"
-                        file_env 'MYSQL_HOST' "${DB_HOST}"
-                        file_env 'MYSQL_PORT' "${DB_PORT}"
-                        file_env 'MYSQL_USER' "${DB_USER}"
-                        file_env 'MYSQL_PASSWORD' "${DB_PASSWORD}"
-                    
+
+                    file_env MYSQL_DATABASE
+                    file_env MYSQL_PASSWORD
+                    file_env MYSQL_USER
+                    file_env POSTGRES_DB
+                    file_env POSTGRES_PASSWORD
+                    file_env POSTGRES_USER
+
                     install=false
                     if [ -n "${SQLITE_DATABASE+x}" ]; then
                         echo "Installing with SQLite database"

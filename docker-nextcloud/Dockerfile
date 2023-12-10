@@ -1,8 +1,6 @@
 # DO NOT EDIT: created by update.sh from Dockerfile-alpine.template
 FROM php:8.2-fpm-alpine3.18
 
-COPY entrypoint.sh /entrypoint.sh  # Добавлена эта строка
-
 # entrypoint.sh and cron.sh dependencies
 RUN set -ex; \
     \
@@ -11,14 +9,11 @@ RUN set -ex; \
         rsync \
     ; \
     \
-    chmod +x /entrypoint.sh; \
-    \
     rm /var/spool/cron/crontabs/root; \
     echo '*/5 * * * * php -f /var/www/html/cron.php' > /var/spool/cron/crontabs/www-data
 
 # install the PHP extensions we need
 # see https://docs.nextcloud.com/server/stable/admin_manual/installation/source_installation.html
-SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 RUN set -ex; \
     \
     apk add --no-cache --virtual .build-deps \
@@ -58,6 +53,7 @@ RUN set -ex; \
         zip \
     ; \
     \
+# pecl will claim success even if one install fails, so we need to perform each install separately
     pecl install APCu-5.1.23; \
     pecl install imagick-3.7.0; \
     pecl install memcached-3.2.0; \
@@ -78,8 +74,7 @@ RUN set -ex; \
             | awk 'system("[ -e /usr/local/lib/" $1 " ]") == 0 { next } { print "so:" $1 }' \
     )"; \
     apk add --no-network --virtual .nextcloud-phpext-rundeps $runDeps; \
-    apk del --no-network .build-deps; \
-    rm -rf /var/cache/apk/*
+    apk del --no-network .build-deps
 
 # set recommended PHP.ini settings
 # see https://docs.nextcloud.com/server/latest/admin_manual/installation/server_tuning.html#enable-php-opcache
@@ -115,11 +110,6 @@ RUN { \
 
 VOLUME /var/www/html
 
-ENV DB_HOST=192.168.202.6
-ENV DB_PORT=3306
-ENV DB_DATABASE=nextcloud
-ENV DB_USER=nextcloud
-ENV DB_PASSWORD=nextcloud
 
 ENV NEXTCLOUD_VERSION 27.1.4
 
@@ -132,6 +122,7 @@ RUN set -ex; \
     curl -fsSL -o nextcloud.tar.bz2 "https://download.nextcloud.com/server/releases/nextcloud-27.1.4.tar.bz2"; \
     curl -fsSL -o nextcloud.tar.bz2.asc "https://download.nextcloud.com/server/releases/nextcloud-27.1.4.tar.bz2.asc"; \
     export GNUPGHOME="$(mktemp -d)"; \
+# gpg key from https://nextcloud.com/nextcloud.asc
     gpg --batch --keyserver keyserver.ubuntu.com  --recv-keys 28806A878AE423A28372792ED75899B9A724937A; \
     gpg --batch --verify nextcloud.tar.bz2.asc nextcloud.tar.bz2; \
     tar -xjf nextcloud.tar.bz2 -C /usr/src/; \
