@@ -5,11 +5,13 @@
 replicaCount: 1
 namespace: my-nextcloud
 
+imagePullSecrets:
+  - name: ghcr-secret
+
 image:
   repository: ghcr.io/ipaul32/docker-nextcloud
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
+  tag: "v0.0.35"
 
 env:
   MYSQL_HOST: 192.168.202.6
@@ -19,34 +21,21 @@ env:
   NEXTCLOUD_ADMIN_USER: admin
   NEXTCLOUD_ADMIN_PASSWORD: admin
 
-imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
 serviceAccount:
-  # Specifies whether a service account should be created
   create: true
-  # Automatically mount a ServiceAccount's API credentials?
   automount: true
-  # Annotations to add to the service account
   annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
   name: ""
 
 podAnnotations: {}
 podLabels: {}
 
 podSecurityContext: {}
-  # fsGroup: 2000
 
 securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
 
 service:
   type: ClusterIP
@@ -56,26 +45,18 @@ ingress:
   enabled: true
   name: my-nextcloud-ingress
   className: ""
-  annotations: {}
+  annotations:
     kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
   hosts:
     - host: my-nextcloud.k8s-3.sa
       paths:
         - path: /
           pathType: ImplementationSpecific
   tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
 
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
- limits:
-    cpu: 1
+resources:
+  limits:
+    cpu: 1000m
     memory: 1Gi
   requests:
     cpu: 500m
@@ -86,11 +67,10 @@ autoscaling:
   minReplicas: 1
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
 
 nfs:
   server: 192.168.37.105
-  path: "/mnt/IT-Academy/nfs-data/sa2-25-23/Ivanchuk_Pavel"  
+  path: "/mnt/IT-Academy/nfs-data/sa2-25-23/Ivanchuk_Pavel"
   readOnly: false
   vers: 3
 

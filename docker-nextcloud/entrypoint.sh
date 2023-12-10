@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/ash
 set -eu
 
 # version_greater A B returns whether A > B
