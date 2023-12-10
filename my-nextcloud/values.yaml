@@ -75,7 +75,7 @@ nfs:
   vers: 3
 
 persistentVolume:
-    storage: 5Gi
+    storage: 4Gi
 
 nodeSelector: {}
 
