@@ -9,6 +9,8 @@ RUN set -ex; \
         rsync \
     ; \
     \
+    chmod +x /entrypoint.sh; \  
+    \
     rm /var/spool/cron/crontabs/root; \
     echo '*/5 * * * * php -f /var/www/html/cron.php' > /var/spool/cron/crontabs/www-data
 
