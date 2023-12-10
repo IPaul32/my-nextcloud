@@ -75,6 +75,7 @@ jobs:
           cd my-nextcloud
           helm package .
           mv *.tgz ../nextcloud-v/
+          cd ..
         shell: bash
 
       - name: Debug Info
