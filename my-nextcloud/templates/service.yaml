@@ -1,38 +1,15 @@
-ind: Service
 apiVersion: v1
-metadata:
-  name: {{ template "my-nextcloud.fullname" . }}
-  namespace: {{ .Release.Namespace | quote }}
-  labels:
-    app: {{ template "my-nextcloud.name" . }}
-    chart: {{ template "my-nextcloud.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
-spec:
-  selector:
-    app: {{ template "my-nextcloud.name" . }}
-    release: {{ .Release.Name }}
-  ports:
-  - protocol: TCP
-    port: {{ .Values.service.port }}
-    targetPort: 80
-
----
 kind: Service
-apiVersion: v1
 metadata:
-  name: {{ template "my-nextcloud.fullname" . }}-preview
-  namespace: {{ .Release.Namespace | quote }}
+  name: {{ include "my-nextcloud.fullname" . }}
   labels:
-    app: {{ template "my-nextcloud.name" . }}
-    chart: {{ template "my-nextcloud.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    {{- include "my-nextcloud.labels" . | nindent 4 }}
 spec:
-  selector:
-    app: {{ template "my-nextcloud.name" . }}
-    release: {{ .Release.Name }}
+  type: {{ .Values.service.type }}
   ports:
-  - protocol: TCP
-    port: {{ .Values.service.port }}
-    targetPort: 80
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "my-nextcloud.selectorLabels" . | nindent 4 }}

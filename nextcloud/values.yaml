@@ -1,0 +1,76 @@
+# Default values for nextcloud.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: ghcr.io/ipaul32/docker-nextcloud
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+  pullPolicy: Always
+
+env:
+  - name: TZ
+    value: Europe/Minsk
+  - name: NEXTCLOUD_URL
+    value: http://my-nextcloud.k8s-3.sa  
+  - name: MYSQL_HOST
+    value: 192.168.202.6
+  - name: MYSQL_USER
+    value: nextcloud
+  - name: MYSQL_PASSWORD
+    value: nextcloud
+  - name: MYSQL_DATABASE
+    value: nextcloud
+  - name: NEXTCLOUD_ADMIN_USER
+    value: admin
+  - name: NEXTCLOUD_ADMIN_PASSWORD
+    value: admin
+  - name: NEXTCLOUD_TRUSTED_DOMAINS
+    value: "nextcloud.k8s-3.sa"
+
+service:
+  #type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: enable
+  className: ""
+  annotations: 
+     kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: nextcloud.k8s-3.sa
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources:
+    limits:
+     cpu: 1000m
+     memory: 512Mi
+    requests:
+     cpu: 500m
+     memory: 128Mi
+
+persistentVolume:
+    storage: 5Gi
+
+
+# autoscaling:
+#   enabled: false
+#   minReplicas: 1
+#   maxReplicas: 100
+#   targetCPUUtilizationPercentage: 80
+#   # targetMemoryUtilizationPercentage: 80
+
+# nodeSelector: {}
+
+# tolerations: []
+
+# affinity: {}

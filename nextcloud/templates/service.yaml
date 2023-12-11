@@ -1,0 +1,38 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ template "nextcloud.fullname" . }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    app: {{ template "nextcloud.name" . }}
+    chart: {{ template "nextcloud.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  selector:
+    app: {{ template "nextcloud.name" . }}
+    release: {{ .Release.Name }}
+  ports:
+  - protocol: TCP
+    port: {{ .Values.service.port }}
+    targetPort: 80
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ template "nextcloud.fullname" . }}-preview
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    app: {{ template "nextcloud.name" . }}
+    chart: {{ template "nextcloud.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  selector:
+    app: {{ template "nextcloud.name" . }}
+    release: {{ .Release.Name }}
+  ports:
+  - protocol: TCP
+    port: {{ .Values.service.port }}
+    targetPort: 80
