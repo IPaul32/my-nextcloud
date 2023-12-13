@@ -5,19 +5,12 @@
 replicaCount: 1
 namespace: my-nextcloud
 
-imagePullSecrets:
-  - name: ghcr-secret
-
 image:
   repository: ghcr.io/ipaul32/docker-nextcloud
   pullPolicy: Always
   tag: ""
 
 env:
-  - name: TZ
-    value: Europe/Minsk
-  - name: NEXTCLOUD_URL
-    value: http://my-nextcloud.k8s-3.sa  
   - name: MYSQL_HOST
     value: 192.168.202.6
   - name: MYSQL_USER
@@ -30,8 +23,6 @@ env:
     value: admin
   - name: NEXTCLOUD_ADMIN_PASSWORD
     value: admin
-  - name: NEXTCLOUD_TRUSTED_DOMAINS
-    value: "my-nextcloud.k8s-3.sa"
 
 nameOverride: ""
 fullnameOverride: ""
