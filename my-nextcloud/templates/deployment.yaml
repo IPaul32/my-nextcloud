@@ -51,6 +51,9 @@ spec:
             httpGet:
               path: /
               port: http
+            initialDelaySeconds: 30    
+            timeoutSeconds: 3          
+            periodSeconds: 5  
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- with .Values.volumeMounts }}
