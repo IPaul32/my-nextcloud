@@ -19,7 +19,7 @@ spec:
       {{- end }}
       labels:
         {{- include "my-nextcloud.labels" . | nindent 8 }}
-	{{- with .Values.podLabels }}
+        {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
@@ -44,22 +44,28 @@ spec:
             httpGet:
               path: /
               port: http
-            initialDelaySeconds: 120    
-            timeoutSeconds: 5           
+            initialDelaySeconds: 30
+            timeoutSeconds: 5
             periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
           readinessProbe:
             httpGet:
               path: /
               port: http
-            initialDelaySeconds: 30    
-            timeoutSeconds: 3          
-            periodSeconds: 5  
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-          {{- with .Values.volumeMounts }}
-          volumeMounts:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
+            initialDelaySeconds: 30
+            timeoutSeconds: 3
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+      {{- with .Values.resources }}
+      resources:
+        {{- toYaml . | nindent 12 }}
+      {{- end }}
+      {{- with .Values.volumeMounts }}
+      volumeMounts:
+        {{- toYaml . | nindent 12 }}
+      {{- end }}
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}
@@ -76,3 +82,11 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+  {{- if .Values.autoscaling.enabled }}
+  autoscaling:
+    minReplicas: 1
+    maxReplicas: 100
+    targetCPUUtilizationPercentage: 80
+    targetMemoryUtilizationPercentage: 80
+    periodSeconds: 30
+  {{- end }}
