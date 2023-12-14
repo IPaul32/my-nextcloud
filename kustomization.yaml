@@ -3,6 +3,6 @@ kind: Kustomization
 resources:
 - https://github.com/argoproj/argo-cd/manifests/cluster-install?ref=v2.8.4
 patchesStrategicMerge:
-  - /home/Project/overlays/argocd-notification-cm.yaml
-  - /home/Project/overlays/argocd-notification-secret.yaml
+  - ~./overlays/argocd-notification-cm.yaml
+  - ~./overlays/argocd-notification-secret.yaml
 namespace: argocd
