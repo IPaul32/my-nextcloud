@@ -134,7 +134,7 @@ jobs:
           git push
 
 
-      - name: Slack Notification on Failure
+      - name: Slack Notification on Succes
         if: success()
         uses: rtCamp/action-slack-notify@v2
         env:
