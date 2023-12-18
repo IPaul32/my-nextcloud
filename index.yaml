@@ -2,8 +2,18 @@ apiVersion: v1
 entries:
   my-nextcloud:
   - apiVersion: v2
+    appVersion: v0.0.60
+    created: "2023-12-18T14:12:05.166633555Z"
+    description: A Helm chart for Kubernetes
+    digest: 156f57402a86f6e717ff2d45491546cf41b2060541d6784a452445836b6db243
+    name: my-nextcloud
+    type: application
+    urls:
+    - https://ipaul32.github.io/my-nextcloud/nextcloud-v/my-nextcloud-v0.0.60.tgz
+    version: v0.0.60
+  - apiVersion: v2
     appVersion: v0.0.59
-    created: "2023-12-18T13:58:56.851751343Z"
+    created: "2023-12-18T14:12:05.166129694Z"
     description: A Helm chart for Kubernetes
     digest: 069f5fb7871e7e2f5b77250de6a664852a3f6f70da456fa629c751c00a6c9718
     name: my-nextcloud
@@ -13,7 +23,7 @@ entries:
     version: v0.0.59
   - apiVersion: v2
     appVersion: v0.0.58
-    created: "2023-12-18T13:58:56.851299072Z"
+    created: "2023-12-18T14:12:05.165701024Z"
     description: A Helm chart for Kubernetes
     digest: dd61af64de0cd30f928c906fd2b6ce6c9bbf04ce1bdfdd597eb6fa6b6f440aa7
     name: my-nextcloud
@@ -23,7 +33,7 @@ entries:
     version: v0.0.58
   - apiVersion: v2
     appVersion: v0.0.57
-    created: "2023-12-18T13:58:56.850891074Z"
+    created: "2023-12-18T14:12:05.165257556Z"
     description: A Helm chart for Kubernetes
     digest: 10a1191525c8f204aa2677486e58b1066cba636e83f54ebbc1350013cef8a5ec
     name: my-nextcloud
@@ -33,7 +43,7 @@ entries:
     version: v0.0.57
   - apiVersion: v2
     appVersion: v0.0.56
-    created: "2023-12-18T13:58:56.85046871Z"
+    created: "2023-12-18T14:12:05.164837492Z"
     description: A Helm chart for Kubernetes
     digest: 00259801d8a5589fb55be1d9682404a93db756d2422e2ace0280654a19dc6097
     name: my-nextcloud
@@ -43,7 +53,7 @@ entries:
     version: v0.0.56
   - apiVersion: v2
     appVersion: v0.0.55
-    created: "2023-12-18T13:58:56.850052136Z"
+    created: "2023-12-18T14:12:05.164372384Z"
     description: A Helm chart for Kubernetes
     digest: 10679b96b3fcf421d9f102b8c743110564db698425562d3a17a6c38f10a99fc4
     name: my-nextcloud
@@ -53,7 +63,7 @@ entries:
     version: v0.0.55
   - apiVersion: v2
     appVersion: v0.0.54
-    created: "2023-12-18T13:58:56.849638307Z"
+    created: "2023-12-18T14:12:05.163949274Z"
     description: A Helm chart for Kubernetes
     digest: cadb0f8a1e37e2e4a05b6b213c2378590ae1a05efa0eb6795b2b938217a76574
     name: my-nextcloud
@@ -63,7 +73,7 @@ entries:
     version: v0.0.54
   - apiVersion: v2
     appVersion: v0.0.53
-    created: "2023-12-18T13:58:56.849201335Z"
+    created: "2023-12-18T14:12:05.1635296Z"
     description: A Helm chart for Kubernetes
     digest: c2652819f23818632801fad0292d26063a0a8c8253e5700351ff43db1cc7dbca
     name: my-nextcloud
@@ -73,7 +83,7 @@ entries:
     version: v0.0.53
   - apiVersion: v2
     appVersion: v0.0.52
-    created: "2023-12-18T13:58:56.848755045Z"
+    created: "2023-12-18T14:12:05.163062939Z"
     description: A Helm chart for Kubernetes
     digest: 237c16df5f2f06284d68926f7b50823142fb39801bc9ec61be4f9a08b487fa41
     name: my-nextcloud
@@ -83,7 +93,7 @@ entries:
     version: v0.0.52
   - apiVersion: v2
     appVersion: v0.0.51
-    created: "2023-12-18T13:58:56.848303395Z"
+    created: "2023-12-18T14:12:05.162338166Z"
     description: A Helm chart for Kubernetes
     digest: 75b7f316c97d89586b449fa892caac76069acde05b69d1d3ed531ada278e6357
     name: my-nextcloud
@@ -93,7 +103,7 @@ entries:
     version: v0.0.51
   - apiVersion: v2
     appVersion: v0.0.50
-    created: "2023-12-18T13:58:56.84773743Z"
+    created: "2023-12-18T14:12:05.161203063Z"
     description: A Helm chart for Kubernetes
     digest: 87b777079b3320dc6b622832466ca03c6e8d901d06bed961b85df5ebbcb00288
     name: my-nextcloud
@@ -103,7 +113,7 @@ entries:
     version: v0.0.50
   - apiVersion: v2
     appVersion: v0.0.49
-    created: "2023-12-18T13:58:56.846434065Z"
+    created: "2023-12-18T14:12:05.160252488Z"
     description: A Helm chart for Kubernetes
     digest: e5eb502a6f6135622d11a150dd2cf91b314eb7831c9491565bcfeca30739d0a7
     name: my-nextcloud
@@ -113,7 +123,7 @@ entries:
     version: v0.0.49
   - apiVersion: v2
     appVersion: v0.0.48
-    created: "2023-12-18T13:58:56.845998074Z"
+    created: "2023-12-18T14:12:05.159813358Z"
     description: A Helm chart for Kubernetes
     digest: 90d117602d5b799777e617f9638f613558857649db1ae1eb66c079e33b408420
     name: my-nextcloud
@@ -123,7 +133,7 @@ entries:
     version: v0.0.48
   - apiVersion: v2
     appVersion: v0.0.47
-    created: "2023-12-18T13:58:56.845563857Z"
+    created: "2023-12-18T14:12:05.159368488Z"
     description: A Helm chart for Kubernetes
     digest: fff4716c9c7a28c6c0d9a600e5c91a5da9e939be19f30443e7446397d7e38de0
     name: my-nextcloud
@@ -133,7 +143,7 @@ entries:
     version: v0.0.47
   - apiVersion: v2
     appVersion: v0.0.46
-    created: "2023-12-18T13:58:56.845079215Z"
+    created: "2023-12-18T14:12:05.158923066Z"
     description: A Helm chart for Kubernetes
     digest: 129942748c7a34c5dc4c603208c0940780a1fe38124fe59a4447eb59459836aa
     name: my-nextcloud
@@ -143,7 +153,7 @@ entries:
     version: v0.0.46
   - apiVersion: v2
     appVersion: v0.0.45
-    created: "2023-12-18T13:58:56.844686276Z"
+    created: "2023-12-18T14:12:05.158500878Z"
     description: A Helm chart for Kubernetes
     digest: 38c7367509bdba7ec4449f72ce65c396f9663fa26f71e1b1b763054ba14c9cf1
     name: my-nextcloud
@@ -153,7 +163,7 @@ entries:
     version: v0.0.45
   - apiVersion: v2
     appVersion: v0.0.44
-    created: "2023-12-18T13:58:56.844286153Z"
+    created: "2023-12-18T14:12:05.15808971Z"
     description: A Helm chart for Kubernetes
     digest: 0c025c4bc602cf638764caebb0a117d96ade18a9cf6c5a1daf13b5863d84cd18
     name: my-nextcloud
@@ -163,7 +173,7 @@ entries:
     version: v0.0.44
   - apiVersion: v2
     appVersion: v0.0.43
-    created: "2023-12-18T13:58:56.843824585Z"
+    created: "2023-12-18T14:12:05.157639189Z"
     description: A Helm chart for Kubernetes
     digest: fdacc7d0ddfe17b63f7c76435921f0e5c05f3aabcdaaa843e63351b189c400c9
     name: my-nextcloud
@@ -173,7 +183,7 @@ entries:
     version: v0.0.43
   - apiVersion: v2
     appVersion: v0.0.42
-    created: "2023-12-18T13:58:56.843386661Z"
+    created: "2023-12-18T14:12:05.157209817Z"
     description: A Helm chart for Kubernetes
     digest: e8832b19e18411c563e96842da0307d4a1ceb91337982cea2f6c67e1a47b77b5
     name: my-nextcloud
@@ -183,7 +193,7 @@ entries:
     version: v0.0.42
   - apiVersion: v2
     appVersion: v0.0.41
-    created: "2023-12-18T13:58:56.842992369Z"
+    created: "2023-12-18T14:12:05.156794892Z"
     description: A Helm chart for Kubernetes
     digest: 44fc89af0349ae93bb889a63bea9bf3c5eaa3f5d679c5eee7314934f4ab3bb9d
     name: my-nextcloud
@@ -193,7 +203,7 @@ entries:
     version: v0.0.41
   - apiVersion: v2
     appVersion: v0.0.40
-    created: "2023-12-18T13:58:56.842432766Z"
+    created: "2023-12-18T14:12:05.156118059Z"
     description: A Helm chart for Kubernetes
     digest: ce4a8e1aa1fed8d1a3905a0cf310331e7b565e678fccca3d557f7fd46426b5e3
     name: my-nextcloud
@@ -203,7 +213,7 @@ entries:
     version: v0.0.40
   - apiVersion: v2
     appVersion: v0.0.39
-    created: "2023-12-18T13:58:56.842029126Z"
+    created: "2023-12-18T14:12:05.155674551Z"
     description: A Helm chart for Kubernetes
     digest: cdaf2ba0715c85206c33fd0e2810b5d3df094fc4cf3e0820793c3faa8957e650
     name: my-nextcloud
@@ -213,7 +223,7 @@ entries:
     version: v0.0.39
   - apiVersion: v2
     appVersion: v0.0.38
-    created: "2023-12-18T13:58:56.841625487Z"
+    created: "2023-12-18T14:12:05.155267541Z"
     description: A Helm chart for Kubernetes
     digest: b484d8b46e875a1474153f4e60e6193879bbb57085984d3c728ffe39850bf23b
     name: my-nextcloud
@@ -223,7 +233,7 @@ entries:
     version: v0.0.38
   - apiVersion: v2
     appVersion: v0.0.37
-    created: "2023-12-18T13:58:56.841215866Z"
+    created: "2023-12-18T14:12:05.154791923Z"
     description: A Helm chart for Kubernetes
     digest: a94ffef06c8e363f6bd0adec7ec0ce5b3c992f2cd6274d020e843a86d651395d
     name: my-nextcloud
@@ -233,7 +243,7 @@ entries:
     version: v0.0.37
   - apiVersion: v2
     appVersion: v0.0.35
-    created: "2023-12-18T13:58:56.840786598Z"
+    created: "2023-12-18T14:12:05.154318759Z"
     description: A Helm chart for Kubernetes
     digest: e6b11b5721b4847b387b28670b2a3f26b1bb415929a210a794d87c7b11083f88
     name: my-nextcloud
@@ -243,7 +253,7 @@ entries:
     version: v0.0.35
   - apiVersion: v2
     appVersion: v0.0.34
-    created: "2023-12-18T13:58:56.840405211Z"
+    created: "2023-12-18T14:12:05.153818886Z"
     description: A Helm chart for Kubernetes
     digest: 1a77b00167c45b5cda083b7f3d2e7c94fd08560fc0af9fe8a8a65c9d7e845e43
     name: my-nextcloud
@@ -253,7 +263,7 @@ entries:
     version: v0.0.34
   - apiVersion: v2
     appVersion: v0.0.33
-    created: "2023-12-18T13:58:56.840035685Z"
+    created: "2023-12-18T14:12:05.153343709Z"
     description: A Helm chart for Kubernetes
     digest: dd2e93f8843ac5fa61985aeed56d44e0400a1067776dda491d6444399e26173d
     name: my-nextcloud
@@ -263,7 +273,7 @@ entries:
     version: v0.0.33
   - apiVersion: v2
     appVersion: v0.0.32
-    created: "2023-12-18T13:58:56.839559079Z"
+    created: "2023-12-18T14:12:05.152557625Z"
     description: A Helm chart for Kubernetes
     digest: be40a9695c9df9fe7fee0213125e0ab48746ac1ef60c75d9556933485a9bdc9a
     name: my-nextcloud
@@ -273,7 +283,7 @@ entries:
     version: v0.0.32
   - apiVersion: v2
     appVersion: v0.0.24
-    created: "2023-12-18T13:58:56.838598862Z"
+    created: "2023-12-18T14:12:05.151384224Z"
     description: A Helm chart for Kubernetes
     digest: 952fb165e6542760dd998c645fec2162b928d8b71ee231ff9f5902783ca61101
     name: my-nextcloud
@@ -281,4 +291,4 @@ entries:
     urls:
     - https://ipaul32.github.io/my-nextcloud/nextcloud-v/my-nextcloud-v0.0.24.tgz
     version: v0.0.24
-generated: "2023-12-18T13:58:56.837801592Z"
+generated: "2023-12-18T14:12:05.150779034Z"
