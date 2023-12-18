@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ template "my-nextcloud.fullname" . }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    app: {{ template "my-nextcloud.name" . }}
+    chart: {{ template "my-nextcloud.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: {{ .Values.persistentVolume.storage }}
+  selector:
+    matchLabels:
+      name: {{ template "my-nextcloud.name" . }}
+      type: nfs

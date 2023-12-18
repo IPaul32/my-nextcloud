@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ template "my-nextcloud.fullname" . }}
+  labels:
+    type: nfs
+    name: {{ template "my-nextcloud.name" . }}
+spec:
+  capacity:
+    storage: {{ .Values.persistentVolume.storage }}
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: /mnt/IT-Academy/nfs-data/sa2-25-23/Ivanchuk_Pavel
+    server: 192.168.37.105

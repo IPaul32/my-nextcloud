@@ -13,7 +13,7 @@ m-sa2-25-23
 4. **Git repository:** [->Click here <-](https://github.com/IPaul32/my-nextcloud "GitHub Ivanchuk Nextcloud")
 
 ### Pipeline. High Level Design
-![nextcloud_scheme](https://github.com/IPaul32/sa2-25-23-Ivanchuk/assets/145698867/c44f4c45-954a-48c4-aeea-1052a4f8d729)
+![nextcloud_scheme](True_scheme.jpg)
 
 ### Technologies which were used in project
 1. **Orchestration:** Kubernetes

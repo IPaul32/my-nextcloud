@@ -4,7 +4,10 @@ metadata:
   name: argocd-notifications-cm
 data:
   service.slack: |
-    token: $slack-token 
+    token: $slack-token
+    apiURL: https://app.slack.com/client/T06AKDGCA91/C06AKDMKL3D?ssb_vid=68db2d845d6ffe600d208e729bbce3da
+    token: $slack-token
+    icon: https://github.com/rtCamp.png?size=48 
   defaultTriggers: |   # https://argo-cd.readthedocs.io/en/stable/operator-manual/notifications/triggers/#default-triggers 
     - on-deployed
   trigger.on-deployed: |  # https://argo-cd.readthedocs.io/en/stable/operator-manual/notifications/triggers/ 
