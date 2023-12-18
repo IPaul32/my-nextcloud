@@ -130,7 +130,7 @@ jobs:
           git config --global user.name "$GITHUB_ACTOR"
           git config --global user.email "GITHUB_ACTOR@users.noreply.github.com"
           git add .
-          git diff --quiet && git diff --staged --quiet || git commit -m "Chart version v0.0.32" -m "try script inside"
+          git diff --quiet && git diff --staged --quiet || git commit -m "Chart version ${{ needs.bump-ver-push-tag.outputs.tag }}" -m "try script inside"
           git push
 
 
